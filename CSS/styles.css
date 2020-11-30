@@ -49,6 +49,7 @@ p {
 
 .header {
   border-bottom: 1px solid rgba(236, 236, 236, 1);
+  
 }
 
 .header-conteiner {
@@ -61,22 +62,26 @@ p {
   display: flex;
   align-items: center;
   margin-right: auto;
+  height: 80px;
 }
 .menu {
   display: inline-flex;
 }
 
-.menu-item:not(:last-child) {
-  margin-right: 50px;
-}
-
 .menu-link {
+  position: relative;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.143;
   letter-spacing: 0.02em;
   color: #212121;
 }
+
+.menu-link:not(:last-child) {
+  margin-right: 50px;
+}
+
+
 .list {
   display: flex;
   list-style: none;
@@ -101,6 +106,31 @@ p {
 .link:focus {
   color: var(--accent-cl);
 }
+ .menu-link {
+   padding-top: 32px ;
+   padding-bottom: 32px;
+   position: relative; 
+}
+
+ .nav-link::after {
+  display: block;
+  content:"";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-cl);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition-property: var(--accent-cl);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after,
+.nav-link:active::after { transform: scaleX(1);
+}
 
 .about {
   padding-bottom: 94px;
@@ -112,6 +142,19 @@ p {
 }
 .about-itens > .about-img:not(:last-child) {
   margin-right: 30px;
+}
+
+.about-img {
+  position:relative;
+  height: 294px;
+}
+
+.box-about{
+  position:absolute;
+  width: 100%;
+  height: 70px;
+  bottom: 0;
+  background: rgba(47, 48, 58, 0.8);
 }
 .section-title {
   font-weight: 700;
