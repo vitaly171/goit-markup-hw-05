@@ -39,6 +39,8 @@ p {
   --cteam-bg: #e5e5e5;
   --icons-color: #afb1b8;
   --text-box: rgba(255, 255, 255, 1);
+  --backdrop: rgba(0, 0, 0, 0.2);
+  --popupbg: rgba(33, 150, 243, 0.9);
 }
 .container {
   width: 1200px;
@@ -50,7 +52,6 @@ p {
 
 .header {
   border-bottom: 1px solid rgba(236, 236, 236, 1);
-  
 }
 
 .header-conteiner {
@@ -82,7 +83,6 @@ p {
   margin-right: 50px;
 }
 
-
 .list {
   display: flex;
   list-style: none;
@@ -102,15 +102,15 @@ p {
 .link:focus {
   color: var(--accent-cl);
 }
- .menu-link {
-   padding-top: 32px ;
-   padding-bottom: 32px;
-   position: relative; 
+.menu-link {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  position: relative;
 }
 
- .nav-link::after {
+.nav-link::after {
   display: block;
-  content:"";
+  content: "";
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -125,7 +125,8 @@ p {
 
 .nav-link:hover::after,
 .nav-link:focus::after,
-.nav-link:active::after { transform: scaleX(1);
+.nav-link:active::after {
+  transform: scaleX(1);
 }
 
 .about {
@@ -141,29 +142,29 @@ p {
 }
 
 .about-img {
-  position:relative;
+  position: relative;
   height: 294px;
 }
 
-.box-about{
+.box-about {
   display: flex;
   align-items: center;
   justify-content: center;
-  position:absolute;
+  position: absolute;
   width: 100%;
   height: 70px;
   bottom: 0;
   background: rgba(47, 48, 58, 0.8);
 }
-.box-title{
-margin: 0;
-font-weight: bold;
-font-style: normal;
-font-size: 14px;
-line-height: 1.143px;
-text-align: center;
-color: var(--text-box);
-text-transform: uppercase;
+.box-title {
+  margin: 0;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.143px;
+  text-align: center;
+  color: var(--text-box);
+  text-transform: uppercase;
 }
 .section-title {
   font-weight: 700;
@@ -193,11 +194,15 @@ text-transform: uppercase;
   margin-left: auto;
   margin-right: auto;
   background-color: var(--gray-bg);
-  background-image: radial-gradient(rgba(47, 48, 58, 0.4),rgba(47, 48, 58, 0.4)), url(../images/bg-hero.jpg);
+  background-image: radial-gradient(
+      rgba(47, 48, 58, 0.4),
+      rgba(47, 48, 58, 0.4)
+    ),
+    url(../images/bg-hero.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  
+
   border: 1px solid #000000;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -595,9 +600,89 @@ address {
 }
 
 .footer .social-icons-svg {
-fill: var(--white);
+  fill: var(--white);
 }
 
 .social-icons-link:hover {
   background-color: var(--accent-cl);
+}
+/*Modal conteiner*/
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--backdrop);
+  opacity: 1;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0);
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 528px;
+  height: 581px;
+  padding: 8px;
+  background-color: var(--text-box);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-close-modal {
+  display: block;
+  margin-left: auto;
+  /*margin-right: 8px;
+  margin-top: 8px;*/
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background-color: transparent;
+  background-image: url(../images/modal-btnclose.svg);
+  background-position: center;
+}
+
+/*Portfolio: popup-window*/
+.popup-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 63px 24px;
+  width: 370px;
+  height: 294px;
+  background-color: var(--popupbg);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.popup-text {
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1.56;
+  color: var(--white);
+}
+.popup-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.samples-items:hover .popup-window {
+  opacity: 1;
+}
+.samples-items:hover .popup-window {
+  transform: translateY(0%);
+}
